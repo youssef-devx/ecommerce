@@ -11,7 +11,9 @@ export default memo(function CartProduct({ productInfo, removeFromCart }) {
         width={600}
         height={400}
         className="rounded-md"
+        priority={false}
       />
+      
       <h3>{productInfo.title}</h3>
       <div className="flex items-center gap-1"><span>{productInfo.rating}</span> <Star size={16} fill="black" /></div>
       <p>${productInfo.price}</p>
