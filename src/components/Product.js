@@ -14,8 +14,8 @@ export default memo(function Product({ productInfo, addToCart }) {
         priority={false}
       />
       <h3>{productInfo.title}</h3>
-      <div className="flex items-center gap-1"><span>{productInfo.rating}</span> <Star size={16} fill="black" /></div>
-      <p>${productInfo.price}</p>
+      <div className="flex items-center gap-1"><span>{productInfo.rating}</span> <Star size={16} fill="#ffad17" color="none" /></div>
+      <p className="font-bold">${productInfo.price}</p>
       <button onClick={addToCart}>Add to Cart</button>
     </div>
   )

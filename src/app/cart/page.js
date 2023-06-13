@@ -22,10 +22,10 @@ export default function Cart() {
 
   return (
     <main className="flex flex-col gap-4">
-      <div className="flex justify-between">
-        <h2 className="text-xl font-bold">Cart</h2>
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold">Cart items:</h2>
         <p className="bg-[#eee] p-4 rounded-lg">
-          Total Price: ${cart.reduce((a, b) => a + b.price, 0).toFixed(2)}
+          Total Price: <span className="font-bold">${cart.reduce((a, b) => a + b.price, 0).toFixed(2)}</span>
         </p>
       </div>
       <div className="products">
@@ -37,33 +37,33 @@ export default function Cart() {
           />
         ))}
       </div>
-      {cart.length < 1 ? <div>No product was added, try add some.</div> : null}
-      <div className="flex justify-center items-center p-6 bg-[#eee] rounded-lg">
+      {cart.length < 1 ? <div className="bg-[#f75347] text-white p-4 rounded-lg w-fit">No product was added, try add some.</div> : null}
         {user && cart.length > 0 ? (
-          <PayPalScriptProvider options={initialOptions}>
-            <PayPalButtons
-              createOrder={(data, actions) => {
-                return actions.order.create({
-                  purchase_units: [
-                    {
-                      amount: {
-                        value: cart.reduce((a, b) => a + b.price, 0).toFixed(2),
+          <div className="flex justify-center items-center p-6 bg-[#eee] rounded-lg">
+            <PayPalScriptProvider options={initialOptions}>
+              <PayPalButtons
+                createOrder={(data, actions) => {
+                  return actions.order.create({
+                    purchase_units: [
+                      {
+                        amount: {
+                          value: cart.reduce((a, b) => a + b.price, 0).toFixed(2),
+                        },
                       },
-                    },
-                  ],
-                })
-              }}
-              onApprove={(data, actions) => {
-                return actions.order.capture().then((details) => {
-                  const name = details.payer.name.given_name
-                  alert(`Transaction completed by ${name}`)
-                  setCart([])
-                })
-              }}
-            />
-          </PayPalScriptProvider>
+                    ],
+                  })
+                }}
+                onApprove={(data, actions) => {
+                  return actions.order.capture().then((details) => {
+                    const name = details.payer.name.given_name
+                    alert(`Transaction completed by ${name}`)
+                    setCart([])
+                  })
+                }}
+              />
+            </PayPalScriptProvider>
+          </div>
         ) : null}
-      </div>
     </main>
   )
 }

@@ -31,11 +31,11 @@ export function Container({ children }) {
     })
   }, [setUser])
 
-  //"border-b-2 border-black"
-
-  return <div className="p-4 flex flex-col gap-12">
+  // "border-b-2 border-black"
+  // bg-[#00000010]
+  return <div className="w-[1024px] m-auto p-6 pt-8 flex flex-col gap-[6rem]">
     <header className="flex justify-between">
-      <h1 className="text-2xl font-bold">E-commerce</h1>
+      <h1 className="text-3xl font-bold">Devx</h1>
       <nav>
         <ul className="flex gap-4">
           <li><Link href="/" className="">Products</Link></li>

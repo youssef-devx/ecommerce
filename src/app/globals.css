@@ -19,6 +19,18 @@ body {
   background: rgb(var(--background-color));
 }
 
+button {
+  background-color: #ff6144;
+  color: white;
+  border-radius: .5rem;
+  padding: .5rem 1rem;
+  transition: background-color .3s ease;
+}
+
+button:hover {
+  background-color: #ff3144;
+}
+
 button:disabled {
   background-color: #999;
   color: #333
@@ -27,7 +39,7 @@ button:disabled {
 .products {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: .5rem;
+  gap: .8rem;
 }
 
 .product {
@@ -36,5 +48,5 @@ button:disabled {
   gap: .5rem;
   background-color: #eee;
   border-radius: .5rem;
-  padding: .5rem;
+  padding: .8rem;
 }

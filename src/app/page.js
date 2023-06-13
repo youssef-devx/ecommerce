@@ -11,7 +11,7 @@ export default function Home() {
   const addToCart = useCallback((idx) => setCart(currCart => [...currCart, products[idx]]), [products, setCart])
 
   return <main className="flex flex-col gap-4">
-    <h2 className="text-xl font-bold">Products</h2>
+    <h2 className="text-2xl font-bold">Products:</h2>
     <div className="products">
       {products.map((productInfo, idx) => <Product key={idx} productInfo={productInfo} addToCart={() => addToCart(idx)} />)}
     </div>
