@@ -1,0 +1,2 @@
+-add dark theme
+-finish "purchased" page

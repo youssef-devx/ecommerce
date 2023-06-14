@@ -1,7 +1,7 @@
 "use client"
 import { CartContext } from "@/CartContext"
 import { UserContext } from "@/UserContext"
-import CartProduct from "@/components/CartProduct"
+import Product from "@/components/Product"
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js"
 import { useCallback, useContext } from "react"
 
@@ -30,16 +30,17 @@ export default function Cart() {
       </div>
       <div className="products">
         {cart.map((productInfo, idx) => (
-          <CartProduct
+          <Product
             key={idx}
             productInfo={productInfo}
-            removeFromCart={() => removeFromCart(idx)}
+            btnLabel="Remove from Cart"
+            onClick={() => removeFromCart(idx)}
           />
         ))}
       </div>
       {cart.length < 1 ? <div className="bg-[#f75347] text-white p-4 rounded-lg w-fit">No product was added, try add some.</div> : null}
+      <div className="flex justify-center items-center p-6 bg-[#eee] rounded-lg">
         {user && cart.length > 0 ? (
-          <div className="flex justify-center items-center p-6 bg-[#eee] rounded-lg">
             <PayPalScriptProvider options={initialOptions}>
               <PayPalButtons
                 createOrder={(data, actions) => {
@@ -62,8 +63,8 @@ export default function Cart() {
                 }}
               />
             </PayPalScriptProvider>
-          </div>
-        ) : null}
+        ) : <p>Login in order to proceed.</p>}
+      </div>
     </main>
   )
 }

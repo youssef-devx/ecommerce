@@ -4,11 +4,12 @@ import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth"
 import { auth } from "../../firebase"
 import { UserContext } from "@/UserContext"
 import { CartContext } from "@/CartContext"
-import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 export function Container({ children }) {
   const [cart] = useContext(CartContext)
   const [user, setUser] = useContext(UserContext)
+  const router = useRouter()
 
   const login = useCallback(() => {
     const provider = new GoogleAuthProvider()
@@ -31,16 +32,22 @@ export function Container({ children }) {
     })
   }, [setUser])
 
-  // "border-b-2 border-black"
-  // bg-[#00000010]
+  const navigateTo = (e, pathname) => {
+    router.push(pathname);
+
+    [...e.target.parentElement.children].forEach(el => {el.classList.remove("border-b-2", "border-black")})
+
+    e.target.classList.add("border-b-2", "border-black")
+  }
+
   return <div className="w-[1024px] m-auto p-6 pt-8 flex flex-col gap-[6rem]">
     <header className="flex justify-between">
       <h1 className="text-3xl font-bold">Devx</h1>
       <nav>
         <ul className="flex gap-4">
-          <li><Link href="/" className="">Products</Link></li>
-          {/* <li><Link href="#">Favourite</Link></li> */}
-          <li><Link href="cart">Cart ({cart.length})</Link></li>
+          <li className="cursor-pointer" onClick={(e) => navigateTo(e, "/")}>Products</li>
+          {/* <li className="cursor-pointer" onClick={(e) => navigateTo(e, "/purchased")}>Purchased</li> */}
+          <li className="cursor-pointer" onClick={(e) => navigateTo(e, "/cart")}>Cart ({cart.length})</li>
           <li className="cursor-pointer" onClick={() => user ? logout() : login()}>{user ? "Logout" : "Login"}</li>
         </ul>
       </nav>

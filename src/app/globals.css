@@ -19,6 +19,12 @@ body {
   background: rgb(var(--background-color));
 }
 
+img {
+  aspect-ratio: 5 / 5;
+  padding: .8rem;
+  background-color: white;
+}
+
 button {
   background-color: #ff6144;
   color: white;
@@ -45,7 +51,8 @@ button:disabled {
 .product {
   display: flex;
   flex-direction: column;
-  gap: .5rem;
+  justify-content: space-between;
+  gap: .3rem;
   background-color: #eee;
   border-radius: .5rem;
   padding: .8rem;

@@ -8,8 +8,8 @@ import { Container } from "@/components/Container"
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'E-commerce Website | Products',
-  description: 'This is an E-commerce Website, developed by Devx.',
+  title: 'Online Shop Website',
+  description: 'This is an online shop Website, developed by Devx.',
 }
 
 export default function RootLayout({ children }) {

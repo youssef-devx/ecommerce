@@ -13,7 +13,7 @@ export default function Home() {
   return <main className="flex flex-col gap-4">
     <h2 className="text-2xl font-bold">Products:</h2>
     <div className="products">
-      {products.map((productInfo, idx) => <Product key={idx} productInfo={productInfo} addToCart={() => addToCart(idx)} />)}
+      {products.map((productInfo, idx) => <Product key={idx} productInfo={productInfo} btnLabel="Add to Cart" onClick={() => addToCart(idx)} />)}
     </div>
   </main>
 }
